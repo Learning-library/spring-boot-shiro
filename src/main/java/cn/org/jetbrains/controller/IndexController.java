@@ -1,6 +1,5 @@
 package cn.org.jetbrains.controller;
 
-import cn.org.jetbrains.pojo.UserInfo;
 import cn.org.jetbrains.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @Author changwenhu
@@ -30,8 +28,6 @@ public class IndexController {
         String account = request.getParameter("account");
         String password = request.getParameter("password");
 
-        UserInfo byAccount = userService.findByAccount(account);
-        List<String> permissionUrl = userService.findPermissionUrl(account);
         UsernamePasswordToken upt = new UsernamePasswordToken(account, password);
         Subject subject = SecurityUtils.getSubject();
         try {
