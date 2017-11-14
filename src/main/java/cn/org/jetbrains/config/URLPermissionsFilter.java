@@ -1,6 +1,6 @@
-package com.example.demo.config;
+package cn.org.jetbrains.config;
 
-import com.example.demo.service.UserService;
+import cn.org.jetbrains.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -21,6 +21,10 @@ public class URLPermissionsFilter extends PermissionsAuthorizationFilter {
 
     @Override
     public boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws IOException {
+
+        System.out.println("================================URLPermissionsFilter.isAccessAllowed()");
+
+
         String curUrl = getRequestUrl(request);
         Subject subject = SecurityUtils.getSubject();
         if (subject.getPrincipal() == null
@@ -29,6 +33,7 @@ public class URLPermissionsFilter extends PermissionsAuthorizationFilter {
                 || StringUtils.equals(curUrl, "/unauthor")) {
             return true;
         }
+        String s = subject.getPrincipal().toString();
         List<String> urls = userService.findPermissionUrl(subject.getPrincipal().toString());
 
         return urls.contains(curUrl);
@@ -43,6 +48,9 @@ public class URLPermissionsFilter extends PermissionsAuthorizationFilter {
      * @since 2014年12月18日 下午3:09:26
      */
     private String getRequestUrl(ServletRequest request) {
+
+        System.out.println("================================URLPermissionsFilter.getRequestUrl()");
+
         HttpServletRequest req = (HttpServletRequest) request;
         String queryString = req.getQueryString();
 

@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package cn.org.jetbrains.pojo;
 
 import lombok.Data;
 

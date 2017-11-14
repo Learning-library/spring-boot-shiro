@@ -1,7 +1,7 @@
-package com.example.demo.config;
+package cn.org.jetbrains.config;
 
-import com.example.demo.domain.UserInfo;
-import com.example.demo.service.UserService;
+import cn.org.jetbrains.pojo.UserInfo;
+import cn.org.jetbrains.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -32,11 +32,10 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        //add Permission Resources
-        info.setStringPermissions(userService.findPermissions(username));
-        //add Roles String[Set<String> roles]
-        //info.setRoles(roles);
+//        info.setStringPermissions(userService.findPermissions(username));
+//        info.setRoles(w);
         return info;
+//        return null;
     }
 
     //登录验证
